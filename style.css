@@ -548,3 +548,58 @@ main.page-content, main {
 .site-footer {
   margin-top: auto;
 }
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+@media screen and (max-width: 768px) {
+  /* Ayusin ang Navbar para sa Mobile */
+  .navbar {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  /* Palakihin ang Product Cards para magkasya sa maliit na screen */
+  .product-grid {
+    gap: 15px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Ayusin ang Footer para magpatong-patong sa mobile */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .footer-about {
+    max-width: 100%;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  /* Ayusin ang Cart Sidebar para sakupin ang buong screen width sa mobile */
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .cart-sidebar.active {
+    right: 0;
+  }
+}
