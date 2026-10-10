@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Cravings By Ella</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header class="navbar">
+      <div class="nav-logo">
+        <a href="index.html"><img src="logo.jpg" alt="Cravings By Ella Logo"></a>
+      </div>
+
+      <nav class="nav-links">
+        <a href="about.html">About Cravings</a>
+        <a href="menu.html">Menu</a>
+        <a href="locations.html">Store Location</a>
+      </nav>
+
+      <div class="nav-icons">
+        <a href="account.html" title="Account"><i class="fa-solid fa-user"></i></a>
+        <a href="#" id="cart-icon" title="Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count">0</span>
+        </a>
+        <a href="#" id="search-icon" title="Search"><i class="fa-solid fa-magnifying-glass"></i></a>
+      </div>
+
+      <!-- Pop-down Search Bar -->
+      <div id="search-bar" class="search-bar">
+        <input type="text" placeholder="Search menu items..." id="search-input">
+        <button id="close-search" class="close-search-btn">&times;</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+      <h1 class="section-title">OUR FULL MENU</h1>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <img src="Matcha.jpg" alt="Matcha Cheesecake">
+          <h3>Matcha Cheesecake</h3>
+          <p class="price">₱65.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="Redvelvet.jpg" alt="Redvelvet Cheesecake">
+          <h3>Redvelvet Cheesecake</h3>
+          <p class="price">₱65.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="Midnight.jpg" alt="Midnight Cheesecake">
+          <h3>Midnight Cheesecake</h3>
+          <p class="price">₱65.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="CinnamonRoll.jpg" alt="Cinnamon Roll">
+          <h3>Cinnamon Roll</h3>
+          <p class="price">₱70.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="Crinkles.jpg" alt="Crinkles">
+          <h3>Crinkles</h3>
+          <p class="price">₱25.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="Korean Buns.jpg" alt="Korean Bun">
+          <h3>Korean Bun</h3>
+          <p class="price">₱95.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="Eggtart.jpg" alt="Eggtart">
+          <h3>Eggtart</h3>
+          <p class="price">₱50.00</p>
+          <button class="btn-add-cart">Add to Cart</button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Cravings By Ella</h3>
+          <p>Baked fresh daily with the finest ingredients to give you the sweetest experience.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="menu.html">Full Menu</a></li>
+            <li><a href="locations.html">Store Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-socials">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/Cravingsbyella" target="_blank" rel="noopener noreferrer" title="Facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/cravingsbyella_/" target="_blank" rel="noopener noreferrer" title="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@cravingsbyellaa" target="_blank" rel="noopener noreferrer" title="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cravings By Ella. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Cart Slide-out Drawer -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+    <aside id="cart-sidebar" class="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Shopping Cart</h2>
+        <button id="close-cart" class="close-btn">&times;</button>
+      </div>
+      <div id="cart-items" class="cart-items">
+        <p class="empty-cart-msg">Your cart is currently empty.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total-price">₱0.00</span>
+        </div>
+        <button class="btn-checkout">PROCEED TO CHECKOUT</button>
+      </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
