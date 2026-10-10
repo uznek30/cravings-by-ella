@@ -192,7 +192,6 @@ body.account-page {
   z-index: 1000;
 }
 
-/* Fixed: Matched JS active state class */
 .cart-sidebar.active {
   right: 0; /* Slides into view */
 }
@@ -283,10 +282,9 @@ body.account-page {
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 99; /* Fixed syntax error */
+  z-index: 99;
 }
 
-/* Class added by JavaScript to show search bar */
 .search-bar.active {
   opacity: 1;
   visibility: visible;
@@ -430,13 +428,6 @@ body.account-page {
   background-color: #581e18;
 }
 
-body {
-  background-color: #fdfbf7;
-  color: #3b1410;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
 /* --- FOOTER STYLES --- */
 .site-footer {
   background-color: #ebd7b2;
@@ -534,6 +525,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #fdfbf7;
+  color: #3b1410;
+  font-family: 'Poppins', sans-serif;
 }
 
 main.page-content, main {
@@ -549,51 +543,87 @@ main.page-content, main {
   margin-top: auto;
 }
 
-/* --- MOBILE RESPONSIVE STYLES --- */
+/* --- GOOGLE MAPS CONTAINER STYLES --- */
+.map-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  border: 2px solid #3b1410;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(59, 20, 16, 0.12);
+}
+
+.map-container iframe {
+  display: block;
+  width: 100%;
+  height: 450px;
+}
+
+/* --- IMPROVED MOBILE RESPONSIVE STYLES --- */
 @media screen and (max-width: 768px) {
-  /* Ayusin ang Navbar para sa Mobile */
+  /* Fix sa Navbar Container para hindi magsikip */
   .navbar {
-    padding: 15px 20px;
+    padding: 12px 15px;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    gap: 12px;
   }
 
+  /* Logo Size Adjustment */
+  .nav-logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* I-center at i-space ang Navigation Links */
   .nav-links {
-    gap: 15px;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px 20px;
+    width: 100%;
   }
 
   .nav-links a {
-    font-size: 16px;
+    font-size: 15px;
+    text-align: center;
   }
 
-  /* Palakihin ang Product Cards para magkasya sa maliit na screen */
+  /* I-center ang Action Icons sa baba ng links */
+  .nav-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    margin-top: 4px;
+  }
+
+  .nav-icons a {
+    margin-left: 0;
+    font-size: 19px;
+  }
+
+  /* Hero Section Padding */
+  .hero-section {
+    padding: 40px 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  /* Product Card Width */
   .product-grid {
     gap: 15px;
   }
 
   .product-card {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
   }
 
-  /* Ayusin ang Footer para magpatong-patong sa mobile */
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 25px;
-  }
-
-  .footer-about {
-    max-width: 100%;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  /* Ayusin ang Cart Sidebar para sakupin ang buong screen width sa mobile */
+  /* Mobile Cart Sidebar Width */
   .cart-sidebar {
     width: 100%;
     right: -100%;
