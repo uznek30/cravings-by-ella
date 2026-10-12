@@ -183,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Buuin ang order message kasama ang mga tamang emojis
       let message = "✨✨Hello Cravings By Ella! I would like to place an order✨✨:\n\n";
       let totalPrice = 0;
 
@@ -196,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
       message += `\n💰 TOTAL AMOUNT: ₱${totalPrice.toFixed(2)}`;
       message += "\n\nThank you! 🥰";
 
-      // Kopyahin sa clipboard ng device
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(message);
@@ -215,20 +213,19 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Failed to copy order details: ", err);
       }
 
-      // Linisin ang cart pagka-checkout
+      // Clear cart
       cart = [];
       localStorage.removeItem("cravings_cart");
       updateCartUI();
 
-      // Buksan ang Messenger chat ng Cravings By Ella
+      // Open Messenger chat
       const fbUsername = "cravingsbyella"; 
       const messengerUrl = `https://m.me/${fbUsername}`;
       window.open(messengerUrl, "_blank");
     });
   }
-});
 
-// --- ABOUT PAGE CAROUSEL AUTO-SLIDE LOGIC ---
+  // --- ABOUT PAGE CAROUSEL AUTO-SLIDE LOGIC ---
   const slides = document.querySelectorAll(".carousel-slide");
   
   if (slides.length > 0) {
@@ -238,5 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
       slides[currentSlide].classList.remove("active");
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add("active");
-    }, 3000); // Nagpapalit ng larawan bawat 3 segundo
+    }, 3000);
   }
+});
