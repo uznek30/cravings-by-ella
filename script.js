@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY ---
+  // --- PROCEED TO CHECKOUT WITH BULLET POINTS & EMOJIS ---
   const checkoutBtn = document.querySelector(".btn-checkout");
 
   if (checkoutBtn) {
@@ -188,27 +188,28 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      let message = "Hello Cravings By Ella! I would like to place an order:\n\n";
+      let message = "";
       let totalPrice = 0;
 
+      // Generates bullet points for each item matching your image format
       cart.forEach((item) => {
         const itemTotal = item.price * item.quantity;
         totalPrice += itemTotal;
-        message += `- ${item.quantity}x ${item.title} (₱${itemTotal.toFixed(2)})\n`;
+        message += `• ${item.quantity}x ${item.title} (₱${itemTotal.toFixed(2)})\n`;
       });
 
-      message += `\nTotal Amount: ₱${totalPrice.toFixed(2)}`;
-      message += "\n\nThank you!";
+      // Money bag icon for total and smiley emoji for thank you
+      message += `\n💰 TOTAL AMOUNT: ₱${totalPrice.toFixed(2)}`;
+      message += "\n\nThank you! 😊";
 
       const encodedMessage = encodeURIComponent(message);
       const fbUsername = "cravingsbyella"; 
 
-      // 1. BUBURAHIN ANG CART SA STORAGE KAPAG NAG-CHECKOUT NA
+      // Clear cart after checkout trigger
       cart = [];
       localStorage.removeItem("cravings_cart");
       updateCartUI();
 
-      // 2. BUBUKSAN ANG MESSENGER
       const messengerUrl = `https://m.me/${fbUsername}?text=${encodedMessage}`;
       window.open(messengerUrl, "_blank");
     });
