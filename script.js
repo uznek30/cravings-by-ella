@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
   if (cartOverlay) cartOverlay.addEventListener("click", closeCart);
 
-  // Search Bar pop-down open/close
+  // Search Bar toggle
   if (searchIcon && searchBar) {
     searchIcon.addEventListener("click", (e) => {
       e.preventDefault();
@@ -43,6 +43,64 @@ document.addEventListener("DOMContentLoaded", () => {
   if (closeSearchBtn && searchBar) {
     closeSearchBtn.addEventListener("click", () => {
       searchBar.classList.remove("active");
+    });
+  }
+
+  // --- SMART SEARCH FILTER & REDIRECT LOGIC ---
+  if (searchInput && searchBar) {
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const query = searchInput.value.trim().toLowerCase();
+        const productCards = document.querySelectorAll(".product-card");
+
+        if (!query) {
+          productCards.forEach((card) => {
+            card.style.display = "block";
+          });
+          return;
+        }
+
+        const searchTerms = query.split(" ");
+        let foundOnThisPage = false;
+
+        productCards.forEach((card) => {
+          const title = card.querySelector("h3").innerText.toLowerCase();
+          const matchesAll = searchTerms.every(term => title.includes(term));
+
+          if (matchesAll) {
+            card.style.display = "block";
+            foundOnThisPage = true;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        if (!foundOnThisPage) {
+          window.location.href = `menu.html?search=${encodeURIComponent(query)}`;
+        } else {
+          searchBar.classList.remove("active");
+        }
+      }
+    });
+  }
+
+  // Auto-filter kung galing sa ibang page dala ang search query
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get("search");
+
+  if (searchQuery && searchInput) {
+    searchInput.value = searchQuery;
+    const productCards = document.querySelectorAll(".product-card");
+    const searchTerms = searchQuery.toLowerCase().split(" ");
+    
+    productCards.forEach((card) => {
+      const title = card.querySelector("h3").innerText.toLowerCase();
+      const matchesAll = searchTerms.every(term => title.includes(term));
+      if (matchesAll) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
     });
   }
 
@@ -173,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY (AUTO-COPY & POPUP FIX) ---
+  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY ---
   const checkoutBtn = document.querySelector(".btn-checkout");
 
   if (checkoutBtn) {
@@ -195,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
       message += `\n💰 TOTAL AMOUNT: ₱${totalPrice.toFixed(2)}`;
       message += "\n\nThank you! 🥰";
 
-      // 1. Kopyahin sa clipboard
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(message);
@@ -211,17 +268,14 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Failed to copy order details: ", err);
       }
 
-      // 2. I-clear ang cart
       cart = [];
       localStorage.removeItem("cravings_cart");
       updateCartUI();
 
-      // 3. Buksan agad ang Messenger bago mag-alert para hindi ma-block ng browser
       const fbUsername = "cravingsbyella"; 
       const messengerUrl = `https://m.me/${fbUsername}`;
       window.open(messengerUrl, "_blank");
 
-      // 4. Magpakita ng notification alert pagkatapos buksan ang tab
       setTimeout(() => {
         alert("📋 Your order details have been copied to your clipboard!\n\nSimply PASTE (Ctrl+V or Long Press) the message in our Messenger chat and send.");
       }, 300);
