@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeSearchBtn = document.getElementById("close-search");
   const searchInput = document.getElementById("search-input");
 
-  // Cart Drawer open/close (Bubukas lang kapag pinindot ang Cart Icon sa Navbar)
+  // Cart Drawer open/close
   if (cartIcon && cartSidebar && cartOverlay) {
     cartIcon.addEventListener("click", (e) => {
       e.preventDefault();
@@ -86,9 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     saveAndUpdateCart();
-    
-    // TANGGAL NA DITO ANG AUTOMATIC PAGBUKAS NG CART SIDEBAR.
-    // Mag-a-update lang ang badge count sa taas nang hindi ka iniistorbo sa pagpili!
   }
 
   function saveAndUpdateCart() {
@@ -176,37 +173,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY ---
+  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY (AUTO-COPY TO CLIPBOARD) ---
   const checkoutBtn = document.querySelector(".btn-checkout");
 
   if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
+    checkoutBtn.addEventListener("click", async () => {
       if (cart.length === 0) {
         alert("Your cart is empty! Please add items before checking out.");
         return;
       }
 
-      let message = "\u2728 Hello Cravings By Ella! I would like to place an order \u2728:\n\n";
+      // Buuin ang order message kasama ang mga tamang emojis
+      let message = "✨✨Hello Cravings By Ella! I would like to place an order✨✨:\n\n";
       let totalPrice = 0;
 
       cart.forEach((item) => {
         const itemTotal = item.price * item.quantity;
         totalPrice += itemTotal;
-        message += `\u2022 ${item.quantity}x ${item.title} (\u20B1${itemTotal.toFixed(2)})\n`;
+        message += `- ${item.quantity}x ${item.title} (₱${itemTotal.toFixed(2)})\n`;
       });
 
-      message += `\n\uD83D\uDCB0 TOTAL AMOUNT: \u20B1${totalPrice.toFixed(2)}`;
-      message += "\n\nThank you! \uD83D\uDE0A";
+      message += `\n💰 TOTAL AMOUNT: ₱${totalPrice.toFixed(2)}`;
+      message += "\n\nThank you! 🥰";
 
-      const encodedMessage = encodeURIComponent(message);
-      const fbUsername = "cravingsbyella"; 
+      // Kopyahin sa clipboard ng device
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(message);
+        } else {
+          const textArea = document.createElement("textarea");
+          textArea.value = message;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textArea);
+        }
 
-      // Clear cart after checkout
+        alert("📋 Your order details have been copied to your clipboard!\n\nSimply PASTE (Ctrl+V or Long Press) the message in our Messenger chat and send.");
+
+      } catch (err) {
+        console.error("Failed to copy order details: ", err);
+      }
+
+      // Linisin ang cart pagka-checkout
       cart = [];
       localStorage.removeItem("cravings_cart");
       updateCartUI();
 
-      const messengerUrl = `https://m.me/${fbUsername}?text=${encodedMessage}`;
+      // Buksan ang Messenger chat ng Cravings By Ella
+      const fbUsername = "cravingsbyella"; 
+      const messengerUrl = `https://m.me/${fbUsername}`;
       window.open(messengerUrl, "_blank");
     });
   }
