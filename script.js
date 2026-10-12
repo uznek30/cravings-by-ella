@@ -227,3 +227,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// --- ABOUT PAGE CAROUSEL AUTO-SLIDE LOGIC ---
+  const slides = document.querySelectorAll(".carousel-slide");
+  
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    
+    setInterval(() => {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 3000); // Nagpapalit ng larawan bawat 3 segundo
+  }

@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Cravings By Ella</title>
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -38,10 +36,43 @@
       </div>
     </header>
 
-    <!-- Page Content -->
-    <main class="page-content">
-        <h1>About Cravings By Ella</h1>
-        <p>Welcome to Cravings By Ella! Here is our story...</p>
+    <!-- Main Content Area -->
+    <main class="page-content about-container">
+
+      <!-- Section 1: Grazing Table Auto-Carousel Left + Text Right -->
+      <section class="about-section image-left">
+        <div class="carousel-box">
+          <div class="carousel-slides" id="about-carousel">
+            <img src="1.jpg" alt="Dessert and Grazing Table 1" class="carousel-slide active">
+            <img src="2.jpg" alt="Chocolate Fountain Setup 2" class="carousel-slide">
+            <img src="3.jpg" alt="Event Grazing Table 3" class="carousel-slide">
+            <img src="4.jpg" alt="Grazing Setup 4" class="carousel-slide">
+            <img src="5.jpg" alt="Party Grazing Spread 5" class="carousel-slide">
+          </div>
+        </div>
+
+        <div class="about-text">
+          <h2>DESSERT & GRAZING TABLE SERVICES</h2>
+          <p>Elevate your special celebrations with Cravings By Ella's signature <strong>Dessert & Grazing Tables</strong>! Whether it's a wedding, birthday, anniversary, or corporate event, we craft aesthetic and mouthwatering spreads tailored to your theme.</p>
+          <p>From chocolate fountains, mini donuts, and freshly baked pastries to savory nachos, appetizers, and finger foods—our grazing tables are designed to bring guests together and turn every event into an unforgettable sweet experience.</p>
+          <p>Based in Angono, Rizal, we bring passion, elegance, and genuine hospitality to every celebration we handle.</p>
+        </div>
+      </section>
+
+      <!-- Section 2: Text Left + Freshly Baked Goodness Image Right -->
+      <section class="about-section image-right">
+        <div class="about-text">
+          <h2>WHERE SWEET MEMORIES COME TO LIFE</h2>
+          <p>Every pastry and dessert from Cravings By Ella reflects the passion and creativity of our dedicated team.</p>
+          <p>We craft each recipe with utmost care using only quality ingredients. Whether you're ordering individual treats or booking a full grazing table for your event, we aim to deliver delights that satisfy every craving.</p>
+          <p>Because great food is never just about eating—it's about the special moments, conversations, and happiness shared with the people you love.</p>
+        </div>
+
+        <div class="about-image-box">
+          <img src="Eggtart.jpg" alt="Freshly Baked Eggtarts" class="about-img">
+        </div>
+      </section>
+
     </main>
 
     <!-- Site Footer -->
@@ -49,7 +80,7 @@
       <div class="footer-container">
         <div class="footer-about">
           <h3>Cravings By Ella</h3>
-          <p>Baked fresh daily with the finest ingredients to give you the sweetest experience.</p>
+          <p>Dessert & Grazing Table Services | Freshly baked pastries daily in Angono, Rizal.</p>
         </div>
 
         <div class="footer-links">
@@ -77,6 +108,7 @@
           </div>
         </div>
       </div>
+
       <div class="footer-bottom">
         <p>&copy; 2026 Cravings By Ella. All Rights Reserved.</p>
       </div>
@@ -84,17 +116,14 @@
 
     <!-- Cart Slide-out Drawer -->
     <div id="cart-overlay" class="cart-overlay"></div>
-
     <aside id="cart-sidebar" class="cart-sidebar">
       <div class="cart-header">
         <h2>Your Shopping Cart</h2>
         <button id="close-cart" class="close-btn">&times;</button>
       </div>
-
       <div id="cart-items" class="cart-items">
         <p class="empty-cart-msg">Your cart is currently empty.</p>
       </div>
-
       <div class="cart-footer">
         <div class="cart-total">
           <span>Total:</span>
