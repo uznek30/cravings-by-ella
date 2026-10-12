@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY (AUTO-COPY TO CLIPBOARD) ---
+  // --- PROCEED TO CHECKOUT BUTTON FUNCTIONALITY (AUTO-COPY & POPUP FIX) ---
   const checkoutBtn = document.querySelector(".btn-checkout");
 
   if (checkoutBtn) {
@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message += `\n💰 TOTAL AMOUNT: ₱${totalPrice.toFixed(2)}`;
       message += "\n\nThank you! 🥰";
 
+      // 1. Kopyahin sa clipboard
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(message);
@@ -206,22 +207,24 @@ document.addEventListener("DOMContentLoaded", () => {
           document.execCommand("copy");
           document.body.removeChild(textArea);
         }
-
-        alert("📋 Your order details have been copied to your clipboard!\n\nSimply PASTE (Ctrl+V or Long Press) the message in our Messenger chat and send.");
-
       } catch (err) {
         console.error("Failed to copy order details: ", err);
       }
 
-      // Clear cart
+      // 2. I-clear ang cart
       cart = [];
       localStorage.removeItem("cravings_cart");
       updateCartUI();
 
-      // Open Messenger chat
+      // 3. Buksan agad ang Messenger bago mag-alert para hindi ma-block ng browser
       const fbUsername = "cravingsbyella"; 
       const messengerUrl = `https://m.me/${fbUsername}`;
       window.open(messengerUrl, "_blank");
+
+      // 4. Magpakita ng notification alert pagkatapos buksan ang tab
+      setTimeout(() => {
+        alert("📋 Your order details have been copied to your clipboard!\n\nSimply PASTE (Ctrl+V or Long Press) the message in our Messenger chat and send.");
+      }, 300);
     });
   }
 
