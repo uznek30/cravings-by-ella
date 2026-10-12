@@ -12,10 +12,10 @@
 
 /* Logo styling */
 .nav-logo img {
-  width: 60px;             /* Adjust size as needed */
-  height: 60px;            /* Must match width for a perfect circle */
-  border-radius: 50%;      /* Makes the image round */
-  object-fit: cover;       /* Prevents the image from stretching */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Navigation Links */
@@ -26,7 +26,7 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #3b1410; /* Dark brown text color */
+  color: #3b1410;
   font-weight: 600;
   font-size: 18px;
 }
@@ -37,20 +37,20 @@
 
 /* Right-side Action Icons */
 .nav-icons a {
-  color: #3b1410;       /* Icon color */
-  font-size: 20px;      /* Icon size */
+  color: #3b1410;
+  font-size: 20px;
   text-decoration: none;
-  margin-left: 15px;    /* Spacing between icons */
+  margin-left: 15px;
   transition: color 0.3s ease;
 }
 
 .nav-icons a:hover {
-  color: #a83232;       /* Color when hovering over an icon */
+  color: #a83232;
 }
 
 /* Apply background color to entire body on account page */
 body.account-page {
-  background-color: #f5f3ef; /* Off-white background color */
+  background-color: #f5f3ef;
   margin: 0;
   min-height: 100vh;
   display: flex;
@@ -112,7 +112,7 @@ body.account-page {
 
 /* Sign In Button */
 .btn-signin {
-  background-color: #3b1410; /* Dark brown button color */
+  background-color: #3b1410;
   color: #ffffff;
   border: none;
   padding: 10px 22px;
@@ -141,7 +141,7 @@ body.account-page {
 }
 
 .forgot-pass {
-  margin-left: auto; /* Pushes forgot password link to the right edge */
+  margin-left: auto;
 }
 
 /* Cart Icon Badge */
@@ -181,7 +181,7 @@ body.account-page {
 .cart-sidebar {
   position: fixed;
   top: 0;
-  right: -400px; /* Hidden off-screen */
+  right: -400px;
   width: 360px;
   height: 100%;
   background-color: #ffffff;
@@ -193,7 +193,7 @@ body.account-page {
 }
 
 .cart-sidebar.active {
-  right: 0; /* Slides into view */
+  right: 0;
 }
 
 /* Cart Header */
@@ -560,14 +560,14 @@ main.page-content, main {
   height: 450px;
 }
 
-/* --- ABOUT PAGE LAYOUT (FIXED IMAGE SIZING & Z-PATTERN) --- */
+/* --- ABOUT PAGE LAYOUT & MOBILE-FRIENDLY CAROUSEL --- */
 .about-container {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 30px auto;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 50px;
 }
 
 .about-section {
@@ -578,7 +578,6 @@ main.page-content, main {
   width: 100%;
 }
 
-/* Rounded Corner Image Boxes with Fixed Max Width & Height */
 .carousel-box, 
 .about-image-box {
   flex: 1;
@@ -587,15 +586,16 @@ main.page-content, main {
   height: 380px;
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0;
 }
 
-/* Carousel Image Slider */
 .carousel-slides {
   width: 100%;
   height: 100%;
   position: relative;
+  touch-action: pan-y;
 }
 
 .carousel-slide {
@@ -606,11 +606,36 @@ main.page-content, main {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
 }
 
 .carousel-slide.active {
   opacity: 1;
+}
+
+/* Carousel Navigation Dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: #ffffff;
+  transform: scale(1.3);
 }
 
 .about-img {
@@ -619,30 +644,27 @@ main.page-content, main {
   object-fit: cover;
 }
 
-/* About Text Styling */
 .about-text {
   flex: 1;
   width: 100%;
 }
 
 .about-text h2 {
-  font-size: 24px;
+  font-size: 22px;
   color: #3b1410;
-  margin-bottom: 20px;
-  font-family: inherit;
-  letter-spacing: 1px;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
 }
 
 .about-text p {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14.5px;
+  line-height: 1.6;
   color: #555;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
-/* --- IMPROVED MOBILE RESPONSIVE STYLES --- */
+/* --- MOBILE SPECIFIC STYLES --- */
 @media screen and (max-width: 768px) {
-  /* Fix sa Navbar Container para hindi magsikip */
   .navbar {
     padding: 12px 15px;
     flex-direction: column;
@@ -650,13 +672,11 @@ main.page-content, main {
     gap: 12px;
   }
 
-  /* Logo Size Adjustment */
   .nav-logo img {
     width: 50px;
     height: 50px;
   }
 
-  /* I-center at i-space ang Navigation Links */
   .nav-links {
     display: flex;
     flex-wrap: wrap;
@@ -670,7 +690,6 @@ main.page-content, main {
     text-align: center;
   }
 
-  /* I-center ang Action Icons sa baba ng links */
   .nav-icons {
     display: flex;
     justify-content: center;
@@ -684,7 +703,6 @@ main.page-content, main {
     font-size: 19px;
   }
 
-  /* Hero Section Padding */
   .hero-section {
     padding: 40px 15px;
   }
@@ -693,7 +711,6 @@ main.page-content, main {
     font-size: 28px;
   }
 
-  /* Product Card Width */
   .product-grid {
     gap: 15px;
   }
@@ -703,7 +720,6 @@ main.page-content, main {
     max-width: 300px;
   }
 
-  /* Mobile Cart Sidebar Width */
   .cart-sidebar {
     width: 100%;
     right: -100%;
@@ -713,15 +729,33 @@ main.page-content, main {
     right: 0;
   }
 
-  /* About Section Stack on Mobile with Proper Box Heights */
+  .about-container {
+    margin: 20px auto;
+    gap: 35px;
+    padding: 0 15px;
+  }
+
   .about-section {
     flex-direction: column !important;
+    gap: 20px;
   }
   
   .carousel-box, 
   .about-image-box {
-    height: 260px;
     max-width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+
+  .about-text h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    text-align: justify;
   }
 
   .footer-container {
