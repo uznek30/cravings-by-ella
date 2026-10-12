@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeSearchBtn = document.getElementById("close-search");
   const searchInput = document.getElementById("search-input");
 
-  // Cart Drawer open/close
+  // Cart Drawer open/close (Bubukas lang kapag pinindot ang Cart Icon sa Navbar)
   if (cartIcon && cartSidebar && cartOverlay) {
     cartIcon.addEventListener("click", (e) => {
       e.preventDefault();
@@ -87,10 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveAndUpdateCart();
     
-    if (cartSidebar && cartOverlay) {
-      cartSidebar.classList.add("active");
-      cartOverlay.classList.add("active");
-    }
+    // TANGGAL NA DITO ANG AUTOMATIC PAGBUKAS NG CART SIDEBAR.
+    // Mag-a-update lang ang badge count sa taas nang hindi ka iniistorbo sa pagpili!
   }
 
   function saveAndUpdateCart() {
@@ -188,27 +186,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      let message = "✨Hello Cravings By Ella! I would like to place an order✨:\n\n";
+      let message = "\u2728 Hello Cravings By Ella! I would like to place an order \u2728:\n\n";
       let totalPrice = 0;
 
       cart.forEach((item) => {
         const itemTotal = item.price * item.quantity;
         totalPrice += itemTotal;
-        message += `• ${item.quantity}x ${item.title} (₱${itemTotal.toFixed(2)})\n`;
+        message += `\u2022 ${item.quantity}x ${item.title} (\u20B1${itemTotal.toFixed(2)})\n`;
       });
 
-      message += `\n💰 TOTAL AMOUNT:  ₱${totalPrice.toFixed(2)}`;
-      message += "\n\nThank you! 😊";
+      message += `\n\uD83D\uDCB0 TOTAL AMOUNT: \u20B1${totalPrice.toFixed(2)}`;
+      message += "\n\nThank you! \uD83D\uDE0A";
 
       const encodedMessage = encodeURIComponent(message);
       const fbUsername = "cravingsbyella"; 
 
-      // 1. BUBURAHIN ANG CART SA STORAGE KAPAG NAG-CHECKOUT NA
+      // Clear cart after checkout
       cart = [];
       localStorage.removeItem("cravings_cart");
       updateCartUI();
 
-      // 2. BUBUKSAN ANG MESSENGER
       const messengerUrl = `https://m.me/${fbUsername}?text=${encodedMessage}`;
       window.open(messengerUrl, "_blank");
     });
